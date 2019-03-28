@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 사용하기</title>
+<style type="text/css">
+/* 
+	  Internal : PAGE 상단에 공통적으로 사용되는 CSS 구현
+	  			 style~style 사이에 있는 CSS page 종속적
+	   */
+body {
+	background-color: skyblue;
+}
+
+h3 {
+	color: red
+}
+</style>
+</head>
+<body>
+	<!--In-Line -->
+	<p style = "background-color:gold">(inline 문단 태그 입니다)</p>
+	<h3>태그는 internal 방식의 css 적용</h3>
+	<h5>External 방식 사용하기(가장 선호: 외부 파일)</h5>
+	<!-- External -->
+	<link rel = "stylesheet" href = "css/common.css">
+	
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>목록태그</title>
+</head>
+<body>
+	<h3>리스트 태그</h3>
+	<ul>
+		<li>가</li>
+		<li>나</li>
+		<li>다</li>
+	</ul>
+	<ul type = "none">
+		<li>가</li>
+		<li>나</li>
+		<li>다</li>
+	</ul>
+		<ul type = "square">
+		<li>가</li>
+		<li>나</li>
+		<li>다</li>
+	</ul>
+	<ol type = "I">
+		<li>가</li>
+		<li>나</li>
+		<li>다</li>
+	</ol>
+	<hr>
+	<h3>링크가능</h3>
+	<a href = "http://www.naver.com"> 네이버 가기(default:현재창)</a>
+	<a href = "http://www.naver.com" target = "_self"> 네이버 가기(default:현재창)</a>
+	<a href = "http://www.naver.com" target = "_blank"> 네이버 가기(default:새창)</a>
+	<hr>
+	<a href = "Ex01_Basic.html">페이지 링크걸기(서버에게 요청)</a>
+	<a href = "http://www.daum.net">
+		<img src = "images/Tulips.jpg" alt = "이미지" width = "60" height ="60">
+	</a>
+</body>
+</html>
