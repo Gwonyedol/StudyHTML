@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* 
+visibility: hidden 과  display:none 의 차이점은 무었인가요
+
+visibility: hidden >> 영역을 확보하고 있다
+*/
+h1.hidden {
+  visibility: hidden;
+}
+h2.hidden2 {
+ display:none
+}
+</style>
+</head>
+<body>
+
+<h1>This is a visible heading</h1>
+<h1 class="hidden">This is a hidden heading</h1>
+<p>Notice that the hidden heading still takes up space.</p>
+<h1 class="hidden2">This is a hidden heading</h1>
+<p>Notice that the hidden heading still takes up space.</p>
+</body>
+</html>
