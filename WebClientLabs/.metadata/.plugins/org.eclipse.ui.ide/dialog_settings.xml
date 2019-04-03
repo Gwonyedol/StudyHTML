@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\FrontAndBackAnd\HTML\WebClientLabs\WebClient_JavaScript\WebContent\startbootstrap"/>
+		<item value="C:\FrontAndBackAnd\HTML\WebClientLabs\WebClient_JavaScript\homework"/>
+	</list>
 	<section name="NewWizardAction">
 		<item value="org.eclipse.jst.servlet.ui.project.facet.WebProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
