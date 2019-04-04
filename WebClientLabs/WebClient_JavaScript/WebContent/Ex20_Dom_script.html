@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type = "text/javascript">
+    window.onload = function(){
+        var pele = document.createElement("p");
+        var hrele = document.createElement("hr");
+        var h3ele = document.createElement("h3");
+        var textnode = document.createTextNode("hello world");
+        var divele = document.createElement("div");
+        var textnode2 = document.createTextNode("hihihihi");
+
+        //<hr title = "수평선">
+        hrele.setAttribute("title", "수평선");
+
+        //<h3>hello world</h3> //기존에 있는 node에 자식요소로..
+        h3ele.appendChild(textnode);
+
+        //<div>Hi HI HI</div>
+        divele.appendChild(textnode2);
+
+        //body 요소에 추가
+        document.body.appendChild(pele).appendChild(divele);
+        //<body><p><div>HIHIHIHi</div></p></body>
+
+        document.body.appendChild(hrele);
+
+        document.body.appendChild(h3ele);
+        /*
+        <body>
+            <p>
+                <div>
+                hihihihi
+                </div>
+                <hr title = "수평선">
+                <h3>hello world</h3>
+            </p>
+        </body>
+        */
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script type="text/javascript">
+      window.onload = function(){
+          var btn = document.getElementById("mybtn");
+          btn.onclick = function(event){//이벤트가 발생되면 이벤트의 정보를 담고있는 객체가 생성된다
+              console.log(event.type);
+              console.log(event.target);
+              console.log(event.currentTarget);
+              console.log(event.x);
+              console.log(event.y);
+
+              
+
+          }
+
+          var btn2 = document.getElementById("mybtn2"); 
+              var handler = function(event){
+              switch(event.type){ 
+                case "click": //코드 
+                alert("복다빈 버러지");
+                break; 
+                case "mouseover": //코드 
+                event.target.style.backgroundColor = "red"; 
+                break; 
+                case "mouseout": //코드 
+                event.target.style.backgroundColor = ""; 
+                break; 
+                } 
+             }; 
+                btn2.onclick = handler; 
+                btn2.onmouseover = handler; 
+                btn2.onmouseout = handler;
+      }
+
+      
+    </script>
+  </head>
+  <body>
+    <button id="mybtn"><span>눌러봐</span></button>
+    <br>
+    <button id="mybtn2">복복다다빈빈</button>
+  </body>
+</html>

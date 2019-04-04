@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        var checkflag = "false"; //페이지에서 구현하는 모든 함수가 사용 >> 전역변수
+        
+        function checkform() {
+            var list = document.myform.list; //모든 element를 >> Array
+            console.log(list);
+
+        if(checkflag == "false") {
+            for(var index in list) {
+                list[index].checked = true;
+            } 
+            checkflag = "true";
+
+            return "[선택해제하기]";
+            } else {
+                for(var index in list) {
+                list[index].checked = false;
+            } 
+            checkflag = "false";
+
+            return "[전체선택]";
+            }
+        }
+///////////////////////////////////////////////
+        var checkflag2 = "false";
+        function checkform2(list) {
+        if(checkflag2 == "false") {
+            for(var index in list) {
+                list[index].checked = true;
+            } 
+            checkflag2 = "true";
+
+            return "[선택해제하기]";
+            } else {
+                for(var index in list) {
+                list[index].checked = false;
+            } 
+            checkflag2 = "false";
+
+            return "[전체선택]";
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+    <form  action="" name="myform">
+        좋아하는 과목은<br>
+        <input type="checkbox" name="list" value="java">JAVA<br>
+        <input type="checkbox" name="list" value="oracle">ORACLE<br>
+        <input type="checkbox" name="list" value="html">HTML<br>
+        <input type="checkbox" name="list" value="css">CSS<br>
+        <input type="checkbox" name="list" value="script">SCRIPT<br>
+        <input type="button" value="[전체선택]" onclick="this.value = checkform()">
+        <br>
+        <input type="button" value="[전체선택]" onclick="this.value = checkform(this.form.list)">
+        <!-- this.form : this >> document -->
+    </form>
+    
+</body>
+</html>
