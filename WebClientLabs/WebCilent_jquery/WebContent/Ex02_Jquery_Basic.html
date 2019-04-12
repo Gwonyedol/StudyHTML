@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="script/jquery-3.4.0.min.js"></script>
+<script type="text/javascript">
+	//window.onload = function(){}
+	//Page에 모든 요소 Dom 형태로 loading 되고난 후에
+/* 	$(document).ready(function(){
+		$('h3').css("color","red");
+	}); */
+	
+	//단축 표현식
+	//즉시 실행 함수
+	//body 요소가 로딩되고난 후에..함수가 실행됩니다.
+	$(function(){
+		$('h3').css("color","blue");
+	});
+</script>
+</head>
+<body>
+	<h3>script include</h3>
+</body>
+</html>

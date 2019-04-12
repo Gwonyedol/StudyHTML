@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\USER\Downloads\WebJSP_JDBC"/>
+		<item value="C:\Users\USER\Desktop\team4"/>
+		<item value="C:\Users\USER\Desktop\team4\Team4_API"/>
+		<item value="C:\Users\USER\Desktop\team4\Team4_handmade"/>
+		<item value="C:\Users\USER\Desktop\project\Study_NodeJS_class4\HTML_Self_Introduction_Project"/>
 		<item value="C:\FrontAndBackAnd\HTML\WebClientLabs\WebClient_JavaScript\WebContent\startbootstrap"/>
 		<item value="C:\FrontAndBackAnd\HTML\WebClientLabs\WebClient_JavaScript\homework"/>
 	</list>

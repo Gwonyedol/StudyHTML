@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+[get 방식.
+1.name 속성 필요
+Ex02_Registor.jsp?userid=kglim&pwd=1004&hobby=a&hobby=b
+2.id속성:UI적인요소..(CSS,javascript,jquery,vue.js...에서 쓰임)
+3.name="userid", id="userid"
+ -->
+	<form action = "Ex02_Registor.jsp" method = "post">
+		<input type = "text" name = "userid"><br>
+		<input type = "text" name = "pwd"><br>
+		<input type = "checkbox" name = "hobby" value = "baseball">baseball<br>
+		<input type = "checkbox" name = "hobby" value = "soccer">soccer<br>
+		<input type = "checkbox" name = "hobby" value = "bascketball">bascketball<br>
+		<input type = "submit" value = "회원가입">
+		</form>
+</body>
+</html>
