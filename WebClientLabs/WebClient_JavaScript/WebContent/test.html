@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type = "text/javascript">
+    document.getElementById("b1").onclick = function(){
+        console.log("실행됨!")
+        var table1 = document.createElement("table");
+        var div1 = document.createElement("div");
+        var text = document.createTextNode("테이블")
+            var tr1 = document.createElement("tr");
+            var td1 = document.createElement("td");
+            table1.setAttribute("id","tab");
+            td1.appendChild(text);
+            document.body.appendChild(div1).appendChild(table1).appendChild(tr1).appendChild(td1);
+    }
+    </script>
+</head>
+<body>
+                행의 수 : <input type = "text" id = "txtrow" name = "txtrow" value = "2"><br>
+                열의 수 : <input type="text" id="txtcolumn" name="txtcolumn" value="2"><br>
+                <input type="button" id="b1" value="동적테이블 생성">
+                <input type="button" id="b2" value="동적테이블 제거">
+</body>
+</html>
