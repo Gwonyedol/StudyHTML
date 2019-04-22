@@ -30,32 +30,32 @@
 			//단 multiple 속성이 있으면  : 다중값
 			//페이지가 로딩 되고 나면 java , oracle 이라 하는 option 다중 선택
 			$('#isF').val(['java','oracle']); //다중값 선택하기
-			 
-			 $('#btnok').click(function() {
-				var = msg = '';
-				msg += $('#txtname').val() + "/";
+			
+			$('#btnok').click(function(){
+				var msg="";
+				msg += $('#txtname').val() + " / ";
 				msg += $('input:radio[name=gender]:checked').val();
-				console.log(msg);
+				console.log("선택값 : " + msg);
+				//단일값
 				
 				//다중값
-				var selecttg="";
+				var selecttag="";
 				selecttag = $('#isF').val(); //다중값 return Array
 				console.log(selecttag);
 				
-				for(var index in selecttag) {
-					console.log("value : " + sesecttag[index]);
+				for(var index in selecttag){
+					console.log("value : " + selecttag[index]);
 				}
-		});
+			});
 			
 			//$('input:submit')
 			//$('input[type=submit]')
 			if($('#myform').children().is('input:submit')){
-				//너의 자식 요소로 submit 태그 있니?
+				//너의 자식 요소로 submit 태그 있니
 				alert("true");
 			}else{
 				alert("false");
 			}
-			
 		});
 	</script>
 </head>

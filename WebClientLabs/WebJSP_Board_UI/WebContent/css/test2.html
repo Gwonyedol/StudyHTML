@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Accordion - Sortable</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() { //큰 틀
+    $( "#accordion" )
+      .accordion({
+        header: "> div > h3"
+        
+      })
+      .sortable({
+        axis: "y",
+        handle: "h3",
+        stop: function( event, ui ) {
+          // IE doesn't register the blur when sorting
+          // so trigger focusout handlers to remove .ui-state-focus
+          ui.item.children( "h3" ).triggerHandler( "focusout" );
+ 
+          // Refresh accordion to handle new order
+          $( this ).accordion( "refresh" );
+        }
+      });
+  } );
+  $( function() { //숫자 맞추기 게임
+	    $( "#sortable" ).sortable();
+	    $( "#sortable" ).disableSelection();
+	  } );
+  
+  $( function() { //프로그레스 바(랜덤게임)
+	    $( "#progressbar" ).progressbar({
+	      value: false
+	    });
+	    $( "button" ).on( "click", function( event ) {
+	      var target = $( event.target ),
+	        progressbar = $( "#progressbar" ),
+	        progressbarValue = progressbar.find( ".ui-progressbar-value" );
+	 
+	      if ( target.is( "#numButton" ) ) {
+	        progressbar.progressbar( "option", {
+	          value: Math.floor( Math.random() * 100 )
+	        });
+	      } else if ( target.is( "#colorButton" ) ) {
+	        progressbarValue.css({
+	          "background": '#' + Math.floor( Math.random() * 16777215 ).toString( 16 )
+	        });
+	      } else if ( target.is( "#falseButton" ) ) {
+	        progressbar.progressbar( "option", "value", false );
+	      }
+	    });
+	  } );
+  
+  $( function() {
+	    $( "#draggable, #draggable-nonvalid" ).draggable();
+	    $( "#droppable" ).droppable({
+	      accept: "#draggable",
+	      classes: {
+	        "ui-droppable-active": "ui-state-active",
+	        "ui-droppable-hover": "ui-state-hover"
+	      },
+	      drop: function( event, ui ) {
+	        $( this )
+	          .addClass( "ui-state-highlight" )
+	          .find( "p" )
+	            .html( "Dropped!" );
+	      }
+	    });
+	  } );
+  
+  </script>
+    <style>
+    
+  h1 {
+  font-family: "맑은 고딕";
+  text-align: center; 
+  };
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+  #sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
+  font-family: "맑은 고딕"; width: 15em; text-align: center;  }
+  html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+  .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+  #progressbar .ui-progressbar-value {
+    background-color: #ccc;
+  }
+  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+  #draggable, #draggable-nonvalid { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  .star {
+  font-size : 30px ;
+  text-align: center;
+  }
+  
+  </style>
+</head>
+<body>
+
+	<h1>Yedol's Game</h1>
+
+	<div id="accordion">
+		<div class="group">
+			<h3>숫자 정렬하기 게임~^0^</h3>
+			<!-- Sortable 이용 -->
+			<div>
+				<ul id="sortable" style="list-style-type: none;">
+					<li class="ui-state-default">4</li>
+					<li class="ui-state-default">8</li>
+					<li class="ui-state-default">9</li>
+					<li class="ui-state-default">1</li>
+					<li class="ui-state-default">2</li>
+					<li class="ui-state-default">5</li>
+					<li class="ui-state-default">10</li>
+					<li class="ui-state-default">6</li>
+					<li class="ui-state-default">3</li>
+					<li class="ui-state-default">7</li>
+					<br>
+				</ul>
+				<br><br><br>
+				<p>
+					숫자를 순서대로 완성한 당신은 <b><mark>Genius</mark></b>~^3^
+				</p>
+			</div>
+		</div>
+		<div class="group">
+			<h3>당신의 행운도를 알아보는 게임~^0^</h3> <!-- https://jqueryui.com/droppable/#accepted-elements -->
+			<div>
+				<div id="draggable-nonvalid" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>
+				<div id="draggable-nonvalid" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>				
+				<div id="draggable-nonvalid" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>
+				<div id="draggable-nonvalid" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>
+				<div id="draggable-nonvalid" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>
+				<div id="draggable-nonvalid" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>
+				<div id="draggable" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>
+				<div id="draggable-nonvalid" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>				
+				<div id="draggable-nonvalid" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>
+				<div id="draggable-nonvalid" class="ui-widget-content">
+					<p class = "star">★</p>
+				</div>
+				
+
+
+
+
+				<div id="droppable" class="ui-widget-header">
+					<p>별을 넣어 박스를 활성화 시켜보세요!</p>
+				</div>
+		<br><br><br><br><br><br><br><br><br>
+		<p><mark>행운도 측정결과</mark></p><br>
+		<p>1회시도: 세상에서 제일 가는 Lucky girl^ㅁ^</p>
+		<p>2회~3회 시도: 간간히 지나가다가 돈줍는 칭구 </p>
+		<p>4회~6회 시도: 소시민</p>
+		<p>7회~9회 시도: 살면서 그 흔한 로또 5등도 못뽑혀봤을st </p>
+		<p>10회 시도: 힘내세요.. </p>
+		
+
+	
+			</div>
+		</div>
+		<div class="group">
+			<h3>랜덤게임~^0^</h3>
+			<div>
+				<div id="progressbar"></div>
+				<button id="numButton">랜덤 버튼</button>
+				<button id="colorButton">랜덤 컬러</button><br>
+				<p>랜덤 버튼 게임(친구와 함께해요!!)<br><br> 친구들과 함께 <b>랜덤버튼</b>을 누르고 길이가 가장 긴 것을 뽑은 친구가<br>
+				우승하는 재미있는 게임이에요!</p>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

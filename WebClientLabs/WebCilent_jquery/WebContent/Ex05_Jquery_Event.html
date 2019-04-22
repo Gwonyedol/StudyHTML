@@ -1,87 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Document</title>
-<script
-	src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script type="text/javascript">
-	/*
-	    https://www.w3schools.com/jquery/jquery_events.asp
-	    click       keypress    submit  load
-	    dblclick    keydown     change  resize
-	    mouseenter  keyup       focus   scroll
-	    mouseleave    x         blur    unload
-	 */
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*  
+	https://www.w3schools.com/jquery/jquery_events.asp
+	Mouse Events	Keyboard Events		Form Events		Document/Window Events
+	click			keypress			submit				load
+	dblclick		keydown				change				resize
+	mouseenter		keyup				focus				scroll
+	mouseleave	 	blur				unload
+	
+	*/
+	
 	$(document).ready(function() {
-		$('#btncopy').click(function() {
-			$('#copyuserid').val($('#txtuserid').val());
-		})
-		//onChange > change
-		//주의사항
-		//element > value값 : input
-		//element > text : p , div , option <div>장지훈</div>
-		//val() , text()
-		$('#select_hobby').change(function() {
-			//var text = $(':selected').text()+'장지훈'; 
-			var text = $('#select_hobby option:selected').text() + '장지훈';
-			$('#txtselect').val(text);
-		})
-		//txtpwd2 >  keyup이 되었을 때 txtpwd입력한 값하고 비교해서 
-		//암호가 같으면 id="message"인 div 태그안에 '암호가 일치합니다'출력하고 일치하지않으면
-		$('#txtpwd2').keyup(function() {
-			if ($('#txtpwd2').val() == $('#txtpwd').val()) {
-				$('#message').text("암호가 일치합니다.");
-			} else {
-				$('#message').text("암호가 틀립니다.");
-			}
+		$('#btncopy').click(function(){
+			$('#txtcopyuserid').val($('#txtuserid').val());
 		});
 		
+		//onChange > change
+		//주의 사항
+		//element > value값 : input 
+		//elememt > text : p , div ,  span , option   <div>방가방가</div>
+		//val() , text() 
+		$('#select_hobby').change(function() {
+			//var text = $(':selected').text(); //[body 안에 select 1개 존재]
+			var text = $('#select_hobby option:selected').text();
+			$('#txtselect').val(text);
+		});
+		
+		//txtpwd2 > keyup 이 되었을때 txtpwd 입력한 값하고 비교해서
+		//암호 입력값이 같으면 id="message" 인  div 태그 안에 '암호가 일치합니다'
+		//라는 문자를 출력하고 일치하지 않으면 '암호가 일치하지 않습니다' 라는 문자를
+		//출력하세요
+		$('#txtpwd2').keyup(function() {
+				if($('#txtpwd').val() != $('#txtpwd2').val()){
+					$('#message').text('암호가 일치하지 않습니다');
+				}else{
+					$('#message').text('암호가 일치합니다');
+				}
+		});
 		
 		$('input').focus(function() {
-            $(this).css('background-color','gray');
-        });
-        
-        $('input').blur(function() {
-            $(this).css('background-color','white');
-        });
+			$(this).css('background-color','gray');
+		});
 		
+		$('input').blur(function() {
+			$(this).css('background-color','white');
+		});
 		
 		//하나의 이벤트가 함수를 여러개 가질 수 있다
 		$('P').hover(
-					 function() {$(this).css('background-color','yellow')}, //마우스 in
-		 			 function() {$(this).css('background-color','pink')}  //마우스 out
-		)
-	
+					function() { $(this).css('background-color','yellow')},  // in
+					function() { $(this).css('background-color','pink')}   // out
+				    )
 	});
-</script>
+	</script>
 </head>
 <body>
-	<p>장지훈 이벤트</p>
-	ID :
-	<input type="text" id="txtuserid">
+	<P>Jquery event</P>
+	ID:<input type="text" id="txtuserid">
 	<hr>
-	<input type="button" id="btncopy" value="copy"> CopyID :
-	<input type="text" id="copyuserid">
+	<input type="button" id="btncopy" value="copy">
+	<hr>
+	COPYID:<input type="text" id="txtcopyuserid">
 	<hr>
 	<select id="select_hobby">
 		<option value="JAVA">java</option>
-		<option>javascript</option>
+		<option>script</option>
 		<option>jdbc</option>
 	</select>
 	<br>
 	<input type="text" id="txtselect">
 	<hr>
-	<table style="border: 1px solid tomato">
+	<table style="border: 1px solid red; ">
 		<tr>
 			<td>암호</td>
-			<td><input type="password" id=txtpwd size="20" maxlength="5"></td>
+			<td>
+				<input type="text" id="txtpwd" size="20" maxlength="5">
+			</td>
 		</tr>
 		<tr>
 			<td>암호확인</td>
-			<td><input type="password" id=txtpwd2 size="20" maxlength="5"></td>
+			<td>
+				<input type="text" id="txtpwd2" size="20" maxlength="5">
+			</td>
 		</tr>
 	</table>
-	<div id="message" style="color: tomato"></div>
+	<div id="message" style="color: red;"></div>
 </body>
 </html>
+
+
+
+
+
+
+
