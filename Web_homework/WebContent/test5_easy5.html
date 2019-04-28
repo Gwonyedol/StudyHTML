@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./jquery/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+	type="text/css" />
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#date").datepicker(
+				{
+					dateFormat : "yymmdd",
+					dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
+					monthNames : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월",
+							"8월", "9월", "10월", "11월", "12월" ],
+					onSelect : function(d) {
+						alert("일일 박스오피스를 조회하실 날짜는 <" + d + "> 입니다.");
+
+						var date = new Date($("#date").datepicker({
+							dataFormat : "yy/mm/dd"
+						}).val());
+					}
+				});
+	});
+	
+</script>
+	
+	
+<script type="text/javascript">
+
+   $(function() {
+      
+      
+      
+      $('#btn').click(function() {
+         var moviename = [];
+         var audiAcc = [];
+                     $.ajax({
+                        
+                              url : "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList",
+                              dataType : "json",
+                              type : "GET",
+                              data : {
+                                 key :"59a9c6d4ba2c806658a23e8d35032fda",
+                                 targetDt : $('#date').val()
+                              },
+                              success : function(data) {
+                            	  var list = data.boxOfficeResult.dailyBoxOfficeList;
+
+                                 console.log(data);
+
+                                 $.each(list , function(index, element){
+                                    var movie = element.movieNm;
+                                    var movieaudience = element.audiCnt;
+                                    audiAcc.push(Number(movieaudience));
+                                    moviename.push(movie);
+                                 
+                                 });
+                                 
+                                 console.log(moviename);
+                                 console.log(audiAcc);
+                                 
+                                 var chart = Highcharts.chart('container', {
+
+                                      title: {
+                                        text: '일별 박스오피스 순위'
+                                      },
+
+                                      subtitle: {
+                                        text: '누적관객수'
+                                      },
+
+                                      xAxis: {
+                                        categories: moviename
+                                      },
+
+                                      series: [{
+                                           type: 'column',
+                                           colorByPoint: true,
+                                           data: audiAcc,
+                                           showInLegend: false
+                                         }]
+
+                                    });
+
+
+                              }
+                           });
+                  });
+   });
+</script>
+
+<style>
+body {
+	text-align: center;
+	font-family: "돋움";
+	margin-left: 15%;
+	margin-right: 15%;
+}
+
+#container {
+	min-width: 320px;
+	max-width: 600px;
+	margin: 0 auto;
+}
+</style>
+</head>
+
+
+<body>
+
+	<h2>일별 박스 오피스 조회</h2>
+	<p id="box">
+		<input type="text" id="date">
+		<input type="button" id="btn" value="조회">
+	</p>
+	<div id="container"></div>
+
+
+</body>
+</html>

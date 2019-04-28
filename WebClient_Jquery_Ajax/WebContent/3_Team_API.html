@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <style>
+      header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      header input[type='button'] {
+        background: none;
+        background-color: cornflowerblue;
+        border: 1px solid white;
+        padding: 5px 15px;
+        color: white;
+        border-radius: 6px;
+        font-weight: 800;
+      }
+      header select {
+        background: none;
+        padding: 2px 15px;
+        border-radius: 6px;
+        font-size: 1.2em;
+      }
+      #poster {
+        display: flex;
+        flex-wrap: wrap;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+          0 6px 6px rgba(0, 0, 0, 0.23);
+        border-radius: 10px;
+        justify-content: space-around;
+        max-width: 1400px;
+      }
+      .poster {
+        margin: 3px;
+        padding: 1px;
+        border: 1px solid black;
+        width: 180px;
+        height: auto;
+        border-radius: 5px;
+      }
+      .poster:hover {
+        transform: scale(1.03);
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+      $(function() {
+        const url = 'https://yts.am/api/v2/list_movies.json?';
+        // sort_by=rating&genre=action
+        $('#rating').click(function() {
+          $.getJSON(
+            url,
+            {
+              sort_by: 'rating',
+              genre: $('#genre').val(),
+            },
+            function(json) {
+              const movieList = json.data.movies;
+              $('#poster').empty();
+              $.each(movieList, function(index, movie) {
+                const a = document.createElement('a');
+                const img = document.createElement('img');
+                a.setAttribute('href', movie.url);
+                img.setAttribute('src', movie.medium_cover_image);
+                img.classList.add('poster');
+                a.appendChild(img);
+                $('#poster').append(a);
+              });
+            }
+          );
+        });
+ 
+        $('#download').click(function() {
+          $.getJSON(
+            url,
+            {
+              sort_by: 'download_count',
+              genre: $('#genre').val(),
+            },
+            function(json) {
+              const movieList = json.data.movies;
+              $('#poster').empty();
+              $.each(movieList, function(index, movie) {
+                const a = document.createElement('a');
+                const img = document.createElement('img');
+                a.setAttribute('href', movie.url);
+                img.setAttribute('src', movie.medium_cover_image);
+                img.classList.add('poster');
+                a.appendChild(img);
+                $('#poster').append(a);
+              });
+            }
+          );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <select name="genre" id="genre">
+        <option value="action">Action</option>
+        <option value="drama">Drama</option>
+        <option value="western">Western</option>
+        <option value="fantasy">Fantasy</option>
+      </select>
+      <input type="button" value="평점 순 검색" id="rating" />
+      <input type="button" value="다운로드 수 순 검색" id="download" />
+    </header>
+ 
+    <div id="poster"></div>
+  </body>
+</html>

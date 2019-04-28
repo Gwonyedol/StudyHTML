@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+$(function () {
+	$("#date").datepicker({
+		dateFormat:"yymmdd",
+		dayNamesMin:["일", "월", "화", "수", "목", "금", "토"],
+		monthNames:["1월", "2월", "3월", "4월", "5월", "6월",
+					"7월", "8월", "9월", "10월", "11월", "12월"],
+		onSelect:function( d ){
+			alert("일일 박스오피스를 조회하실 날짜는 <" + d + "> 입니다.");
+		
+			var date = new Date(
+					$("#date").datepicker({dataFormat:"yy/mm/dd"}).val());
+		}
+	});
+});
+
+</script>
+
+<script type="text/javascript">
+
+$(function() {
+
+
+    $('#btn').click( function drawChart() { 
+    	
+		google.charts.load('current', {'packages':['bar']});
+		google.charts.setOnLoadCallback(drawChart);
+
+	   var Rank = [];
+	   var MovieName = [];
+	   var DailyP = [];
+	   var StackP = [];
+	   var URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=26a705cd0a25be2d30dcd7249d567eb4&targetDt";
+	   var fURL = URL.concat("=",$("#date").val())
+	   
+	   console.log($("#date").val());
+	   console.log("무야");
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   $.getJSON(fURL, function(data) {
+		     var items = data.dailyBoxOfficeList;
+		     $.each(items, function(index, obj) {
+		      Rank[index] = parseInt(obj.rank);
+		      MovieName[index] = obj.movieNm;
+		      DailyP[index] = parseInt(obj.audiCnt);
+		      StackP[index] = parseInt(obj.audiAcc);
+		 
+		     });
+		
+		     
+
+		    	    var data1=[];
+		    	    var Header= ['영화 이름', '랭킹', '누적관객수', '일일관객수'];
+		    	    data1.push(Header);
+				     for (var i = 0; i <10; i++) {
+				         data1.push([MovieName[i],Rank[i],StackP[i],DailyP[i]]);
+				         }
+		    		
+
+		    var data2 = google.visualization.arrayToDataTable(	    
+					data1
+		        );
+
+      var options = {
+        chart: {
+          title: '영화관 박스오피스 관객수 ',
+          subtitle: '2019/04/24 기준',
+        },
+        bars: 'vertical',
+        vAxis: {format: 'decimal'},
+        height: 400,
+        colors: ['#1b9e77', '#d95f02', '#7570b3']
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+      chart.draw(data2, google.charts.Bar.convertOptions(options));
+
+
+            
+            
+                           
+       });
+    	
+	   
+
+	   
+});
+    
+});
+</script>
+
+<style>
+
+body {
+	text-align: center;
+	font-family: "돋움";
+	margin-left: 15%;
+	margin-right: 15%;
+}
+</style>
+</head>
+<body>
+
+<h2>일별 박스 오피스 조회</h2>
+<p id = "box"><input type="text" id="date">
+<input type="button" id="btn" value="조회"></p>
+<div id="chart_div"></div>
+
+
+
+</body>
+</html>

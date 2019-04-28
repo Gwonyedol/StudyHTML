@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+C:\My Room♪\02 공부\01프로그래밍\04프로그래밍언어\HTML\StudyHTML\WebClientLabs\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\493435683.index
+\JAVAscript\src
+C:\My Room♪\02 공부\01프로그래밍\04프로그래밍언어\HTML\StudyHTML\WebClientLabs\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1670902690.index
+\JAVAscript\src

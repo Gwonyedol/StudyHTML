@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(drawChart);
+
+
+
+function drawChart() {
+
+       var Rank = [];
+       var MovieName = [];
+       var DailyP = [];
+       var StackP = [];
+      var URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=26a705cd0a25be2d30dcd7249d567eb4&targetDt"
+             
+       $.getJSON(URL, function(data) {
+             var items = data.dailyBoxOfficeList;
+             $.each(items, function(index, obj) {
+              Rank[index].push(parseInt(obj.rank)) ;
+              MovieName[index].push(obj.movieNm) ;
+              DailyP[index].push(parseInt(obj.audiCnt));
+              StackP[index].push(parseInt(obj.audiAcc));
+        
+             });
+        
+            
+
+                    var data1=[];
+                    var Header= ['영화 이름', '랭킹', '누적관객수', '일일관객수'];
+                    data1.push(Header);
+                     for (var i = 0; i <10; i++) {
+                         data1.push([MovieName[i],Rank[i],StackP[i],DailyP[i]]);
+                         }
+                    
+
+            var data2 = google.visualization.arrayToDataTable(        
+                    ()data1
+                );
+
+
+      var options = {
+        chart: {
+          title: '영화관 박스오피스 관객수 ',
+          subtitle: '2019/04/24 기준',
+        },
+        bars: 'vertical',
+        vAxis: {format: 'decimal'},
+        height: 400,
+        colors: ['#1b9e77', '#d95f02', '#7570b3']
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+      chart.draw(data2, google.charts.Bar.convertOptions(options));
+
+      var btns = document.getElementById('btn-group');
+
+      btns.onclick = function (e) {
+
+        if (e.target.tagName === 'BUTTON') {
+          options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
+          chart.draw(data2, google.charts.Bar.convertOptions(options));
+        }
+      }
+            
+            
+                           
+       });
+    
+}
+</script>
+</head>
+<body>
+
+
+    <form action="/action_page.php">
+        Birthday: <input type="date" name="bday"> <input type="submit">
+    </form>
+    
+    
+    <div id="chart_div"></div>
+   <br/>
+   <div id="btn-group">
+     <button class="button button-blue" id="none">No Format</button>
+     <button class="button button-blue" id="scientific">Scientific Notation</button>
+     <button class="button button-blue" id="decimal">Decimal</button>
+     <button class="button button-blue" id="short">Short</button>
+   </div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <script type="text/javascript">
+            window.onload = function(){
+                let imgnumber = 0;
+                var myphotos = Array("image/1.png",
+                                    "image/2.png",
+                                    "image/3.png",
+                                    "image/4.png",
+                                    "image/5.png",
+                                    )
+                
+
+                document.getElementById("next").onclick = function(){
+                    
+                    
+                    console.log(imgnumber);
+                    console.log(myphotos[imgnumber]);
+                    document.getElementById("imgs").setAttribute("src", myphotos[imgnumber])
+                    if(imgnumber == 4){
+                        imgnumber = -1;
+                    } 
+                    imgnumber++;
+                    
+                    
+                }
+
+                document.getElementById("prv").onclick = function(){
+                    
+                    
+                    console.log(imgnumber);
+                    console.log(myphotos[imgnumber]);
+                    document.getElementById("imgs").setAttribute("src", myphotos[imgnumber])
+                    
+                    if(imgnumber == 0){
+                        imgnumber =5;
+                    }
+                    imgnumber--;
+                    
+                }
+                
+            }
+        </script>
+    </head>
+    <body>
+        <h3>DOM 슬라이드</h3>
+        <img src="image/1.png" id="imgs" width ="200" height = 200 alt ="이미지">
+        <hr>
+        <a href="#" id="prv">이전</a> || <a href="#" id="next">다음</a>
+    </body>
+</html>

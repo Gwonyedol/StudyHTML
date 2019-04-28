@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/Chart.min.js"></script> 
+</head>
+<body>
+<button id='btn' name='btn'>영화 누적 관객수 조회</button>
+<canvas id="myChart" width="200px" height="100px"></canvas>
+ 
+<script>
+ 
+$(function (){
+    $('#btn').click(function () {
+        
+        // 비동기 처리로 외부 api 연결
+        $.ajax(
+              { 
+                url:"http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=9e59c890a115588440d1798da7e27bce&targetDt=20180324",
+                dataType:"json",
+                success:function(data){
+                    var audiAcc = []; 
+                    var moviename = []; 
+                    $(data.boxOfficeResult.dailyBoxOfficeList).each(function () {
+                
+                        audiAcc.push(this.audiAcc);
+                        moviename.push(this.movieNm);
+                    });
+                    
+                    // 아래부터는 차트
+                    var ctx = document.getElementById("myChart");
+ 
+                    var myChart = new Chart(ctx, {
+ 
+                        type: 'horizontalBar',
+ 
+                        data: {
+ 
+                            labels: [moviename[0], moviename[1], moviename[2], moviename[3], moviename[4], moviename[5], moviename[6], moviename[7], moviename[8], moviename[9]],
+ 
+                            datasets: [{
+ 
+                                label: '영화별 누적 관객수',
+ 
+                                data: [audiAcc[0], audiAcc[1], audiAcc[2], audiAcc[3], audiAcc[4], audiAcc[5], audiAcc[6], audiAcc[7], audiAcc[8], audiAcc[9]],
+ 
+                                backgroundColor: [
+ 
+                                    'rgba(255, 99, 132, 0.2)',
+ 
+                                    'rgba(54, 162, 235, 0.2)',
+ 
+                                    'rgba(255, 206, 86, 0.2)',
+ 
+                                    'rgba(75, 192, 192, 0.2)',
+ 
+                                    'rgba(0, 255, 0, 0.2)',
+                                  
+                                    'rgba(255, 102, 0, 0.2)',
+                                    
+                                    'rgba(102, 0, 52, 0.2)',
+                                    
+                                    'rgba(102, 51, 0, 0.2)',
+                                    
+                                    'rgba(153, 102, 255, 0.2)',
+ 
+                                    'rgba(255, 159, 64, 0.2)'
+ 
+                                ],
+ 
+                                borderColor: [
+ 
+                                    'rgba(255,99,132,1)',
+ 
+                                    'rgba(54, 162, 235, 1)',
+ 
+                                    'rgba(255, 206, 86, 1)',
+ 
+                                    'rgba(75, 192, 192, 1)',
+ 
+                                    'rgba(0, 255, 0, 1)',
+ 
+                                    'rgba(255, 102, 0, 1)',
+                                    
+                                    'rgba(102, 0, 52, 1)',
+                                    
+                                    'rgba(102, 51, 0, 1)',
+                                    
+                                    'rgba(153, 102, 255, 1)',
+ 
+                                    'rgba(255, 159, 64, 1)'
+ 
+                                ],
+ 
+                                borderWidth: 0.5
+ 
+                            }]
+ 
+                        },
+ 
+                        options: {
+ 
+                            scales: {
+ 
+                                yAxes: [{
+ 
+                                    ticks: {
+ 
+                                        beginAtZero:true
+ 
+                                    }
+ 
+                                }]
+ 
+                            }
+ 
+                        }
+ 
+                    });
+                    
+                } // end - success function
+            }
+        ); // end - .ajax
+    }); // end - click
+});
+ 
+ 
+ 
+</script>
+</body>
+</html>

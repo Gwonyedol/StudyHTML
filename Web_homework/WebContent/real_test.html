@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+var Rank = [];
+var Mname = [];
+var MstackN = [];
+
+$.getJSON("test2.json", function(data) {
+    var items = data.dailyBoxOfficeList;
+    $.each(items, function(index, obj) {
+     Rank[index] = parseInt(obj.rank);
+     Mname[index] = obj.movieNm;
+     MstackN[index] = parseInt(obj.audiAcc);
+     
+    });
+    console.log(Mname);
+    console.log(Rank);
+    
+}) 
+
+
+</script>
+</head>
+<body>
+
+
+
+
+</body>
+</html>

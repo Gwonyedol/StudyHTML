@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+C:\My Room♪\02 공부\01프로그래밍\04프로그래밍언어\HTML\StudyHTML\WebClientLabs\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2744742364.index
+3503394809.index
+2147167874.index
+1524522220.index
+4050314937.index
+4205490370.index
+2233785399.index
+4158293358.index

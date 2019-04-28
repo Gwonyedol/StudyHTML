@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Bitcamp Gruop 3 API</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+			
+		$(function(){
+			$('#btn').click(function(){
+                $('#display').empty();
+                $.ajax({
+                    url : 'http://openapi.gangnam.go.kr:8088/7842674c6b6a696e35336f50735752/json/GnModelRestaurantDesignate/1/500/',
+                    dataType:"json",
+                    success:function(data){
+                    	var cnt = 0;
+                        var table = "<table class='table'>";
+                        table += "<tr class='warning'><th>등록일</th><th>업소명</th><th>업소주소</th><th>업태</th><th>주된음식</th><th>행정동명</th><th>전화번호</th></tr>"
+                        
+                       	$.each(data.GnModelRestaurantDesignate.row, function(index, obj) {
+	                        if(obj.ADMDNG_NM == $("select > option:selected").val()){
+	                        	if((++cnt % 2) == 0) {
+	            	        		table += "<tr>";
+	            	        	}else {
+	            	        		table += "<tr class='info'>";
+	            	        	}
+	            	            table += "<td>" + obj.ASGN_YMD + "</td>";
+	            	            table += "<td>" + obj.UPSO_NM + "</td>";
+	            	            table += "<td>" + obj.SITE_ADDR_RD + "</td>";
+	            	            table += "<td>" + obj.SNT_UPTAE_NM + "</td>";
+	            	            table += "<td>" + obj.MAIN_EDF + "</td>";
+	            	            table += "<td>" + obj.ADMDNG_NM + "</td>";
+	            	            table += "<td>" + obj.UPSO_SITE_TELNO + "</td>";
+	            	            table += "</tr>";
+	                        };
+	                    });
+                        table += "</table>";
+                        $('#display').html(table);
+                    }
+                });
+            });
+		});
+	</script>
+</head>
+<body>
+	<h2>서울시 강남구 모범음식점 지정 현황</h2>
+    <label>동 선택</label>
+	<select id="dong">
+        <option>삼성1동</option>
+        <option>일원1동</option>
+        <option>논현1동</option>
+        <option>역삼1동</option>
+        <option>대치1동</option>
+        <option>도곡1동</option>
+        <option>청담동</option>
+    </select>
+    
+	<input type="button" id="btn" value="검색하기">
+	<hr>
+	<div id="display"></div>
+</body>
+</html>

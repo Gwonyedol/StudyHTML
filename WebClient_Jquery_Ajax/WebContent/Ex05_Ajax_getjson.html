@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#btn .btnload').click(function(){
+				// 내부적으로 : dataType: "json" 설정을 가지고 있다 
+				//jQuery.getJSON( url [, data ] [, success ] )
+				$.getJSON("Ex05_json.json",function(data){
+					console.log(data);
+					//문제: Table 을 만들고 서버에서 받은 데이터를  td 태그 안에 넣으세요
+					//가공 ..... 클라이언트 요구사항 (테이블 형태로 출력해 주세요)
+					var table = "<table border='1'>";
+							table+="<tr><th>INDEX</th><th>NUM</th><th>NAME</th></tr>";
+							$.each(data,function(index,obj){
+								//KEY POINT (JSON)
+								//1. 객체.속성명
+								//2. 객체["속성명"]
+								table+="<tr>"
+									table+="<td>" + index + "</td>";
+									table+="<td>" + obj.num + "</td>";
+									if(obj.num){
+										table+="<td>" + obj["Name"] + "</td>";
+									}else{
+										table+="<td>" + "Empty" + "</td>";
+									}
+								table+="</tr>"
+							});
+					    table +="</table>";
+					    
+					    //$('#display').html(table);
+					    $('#display').append(table);
+				});
+			});
+		});	
+	</script>
+</head>
+<body>
+	<div id="btn">
+			<div class="btnload">JSON DATA LOAD</div>
+	</div>
+	<div id="display"></div>
+</body>
+</html>
+
+
+
+
+
+
+

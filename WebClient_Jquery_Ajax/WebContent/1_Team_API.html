@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        //https://yts.am/api/v2/list_movies.json
+        $(function(){
+            $('#radio1').click(function(){
+                url="https://yts.am/api/v2/list_movies.json?sort_by=year&";
+                console.log('클릭');
+                $.getJSON(url,{genre : $('input[name="group"]:checked').val()},function(data){
+                    var movie = data.data.movies;
+                    $('#inf').empty();
+                    $('#inf').append("<tr><td>제목(년도)</td><td>장르</td><td>포스터</td></tr>");
+                    console.log(data.data.movies);
+                    $.each(movie,function(){
+                        $('#inf').append("<tr><td>" + this.title + "(" + this.year + ")" + "</td><td>" + this.genres + "</td><td><img alt='이미지' src='" + this.medium_cover_image + "' width='100' height='100'/></td><tr>");
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    장르를 선택하세요 !<br>
+    
+    <form id=radio1>
+        <input type="radio" name="group" id="genre" value="action">action<br>
+        <input type="radio" name="group" id="genre" value="adventure">adventure<br>
+        <input type="radio" name="group" id="genre" value="comedy">comedy<br>
+        <input type="radio" name="group" id="genre" value="drama">drama<br>
+        <input type="radio" name="group" id="genre" value="Horror">Horror<br>
+        <input type="radio" name="group" id="genre" value="romance">romance<br>
+        <input type="radio" name="group" id="genre" value="musical">musical<br>
+    </form>
+    <table id="inf" border="1"></table>
+</body>
+</html>

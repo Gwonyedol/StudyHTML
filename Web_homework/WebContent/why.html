@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+$(function () {
+	$("#date").datepicker({
+		dateFormat:"yymmdd",
+		dayNamesMin:["일", "월", "화", "수", "목", "금", "토"],
+		monthNames:["1월", "2월", "3월", "4월", "5월", "6월",
+					"7월", "8월", "9월", "10월", "11월", "12월"],
+		onSelect:function( d ){
+			alert("일일 박스오피스를 조회하실 날짜는 <" + d + "> 입니다.");
+		
+			var date = new Date(
+					$("#date").datepicker({dataFormat:"yy/mm/dd"}).val());
+		}
+	});
+});
+
+</script>
+
+<script type="text/javascript">
+
+$(function() {
+
+
+    $('#btn').click( function () {
+    	console.log("hi");
+});
+    
+});
+</script>
+
+<style>
+
+body {
+	text-align: center;
+	font-family: "돋움";
+	margin-left: 15%;
+	margin-right: 15%;
+}
+</style>
+</head>
+<body>
+
+<h2>일별 박스 오피스 조회</h2>
+<p id = "box"><input type="text" id="date">
+<input type="button" id="btn" value="조회"></p>
+<div id="chart_div"></div>
+
+
+
+</body>
+</html>

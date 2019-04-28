@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        
+        $.getJSON("Assignment.json", function(data){
+          var arr2 = data.dataSearch.content
+          $.each(arr2, function(index,obj){
+            var option = obj.job + " / " + obj.jobdicSeq + "<br>";
+            var job = obj.jobdicSeq;
+            $("<option>")
+            .attr("value", job)
+            .text(option)
+            .appendTo("#search");
+          });
+        });
+        $("#btn").click(function() {
+          let flickerAPI = "http://www.career.go.kr/cnet/openapi/getOpenApi?apiKey=e1a5a28fc798685f07823b77aa5e489e&svcType=api&svcCode=JOB&contentType=json&gubun=job_dic_list";
+ 
+ 
+          let flickerAPI2 =
+            "http://www.career.go.kr/cnet/openapi/getOpenApi?apiKey=e1a5a28fc798685f07823b77aa5e489e&svcType=api&svcCode=JOB_VIEW&contentType=json&gubun=job_dic_list?";
+ 
+          $.getJSON(
+            flickerAPI2,
+            {
+              jobdicSeq: $("#search").val()
+            },
+            function(data, textStatus, xhr) {
+              var arr = data.dataSearch.content[0];
+              console.log(arr.similarJob);
+ 
+            $("#job").empty();
+            $("#capacity_major").empty();
+            $("#salery").empty();
+            $("#ability").empty();
+ 
+            $('#job').text(arr.similarJob);
+            $('#capacity_major').text(arr.capacity_major[0].capacity);
+            $('#salery').text(arr.stateofemp[2].salery);
+            $('#ability').text(arr.ability);
+ 
+            }
+          );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <select name="search" id="search">
+ 
+    </select>
+    <input type="button" value="검색하기" id="btn" />
+    <hr>
+    <div id="table">
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-light">
+            <th scope="row" colspan=4 style="font-size : 20px">직업정보</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+          <tr class="table-light">
+            <th scope="row">유사직업</th>
+            <td colspan=3 id="job"></td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">관련 자격증</th>
+            <td colspan=3  id="capacity_major"></td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">임금 수준</th>
+            <td colspan=3 id="salery"></td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row" >핵심 능력</th>
+            <td colspan=3 id="ability"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
