@@ -114,9 +114,9 @@
 				
 				
 				
-				<Context docBase="Web_homework" path="/Web_homework" reloadable="true" source="org.eclipse.jst.jee.server:Web_homework"/>
 				
-			<Context docBase="WebServlet_8_Member_Model2_Mvc_Url_Interface" path="/WebServlet_7_Member_Model2_Mvc_Url" reloadable="true" source="org.eclipse.jst.jee.server:WebServlet_8_Member_Model2_Mvc_Url_Interface"/><Context docBase="WebServlet_6_Board_Model1_Sample" path="/WebServlet_6_Board_Model1_Sample" reloadable="true" source="org.eclipse.jst.jee.server:WebServlet_6_Board_Model1_Sample"/><Context docBase="WebServlet_5_memo_mvc_tomcat_dbcp" path="/WebServlet_5_memo_mvc_tomcat_dbcp" reloadable="true" source="org.eclipse.jst.jee.server:WebServlet_5_memo_mvc_tomcat_dbcp"/></Host>
+				
+			<Context docBase="WebServlet_92_Session_Servlet" path="/WebServlet_92_Session_Servlet" reloadable="true" source="org.eclipse.jst.jee.server:WebServlet_92_Session_Servlet"/><Context docBase="WebServlet_8_Member_Model2_Mvc_Url_Interface" path="/WebServlet_7_Member_Model2_Mvc_Url" reloadable="true" source="org.eclipse.jst.jee.server:WebServlet_8_Member_Model2_Mvc_Url_Interface"/><Context docBase="WebServlet_9_memo_mvc_url_Interface" path="/WebServlet_9_memo_mvc_url_Interface" reloadable="true" source="org.eclipse.jst.jee.server:WebServlet_9_memo_mvc_url_Interface"/></Host>
 		</Engine>
 	</Service>
 </Server>
